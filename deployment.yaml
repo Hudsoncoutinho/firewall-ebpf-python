@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: firewall-ebpf
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: firewall-ebpf
+  template:
+    metadata:
+      labels:
+        app: firewall-ebpf.py
+    spec:
+      containers:
+      - name: firewall-ebpf.py
+        image: firewall-ebpf:tag
+        ports:
+        - containerPort: 8080
+
+
