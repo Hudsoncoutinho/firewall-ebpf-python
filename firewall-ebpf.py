@@ -1,6 +1,6 @@
 from bcc import BPF
 
-# Carrega o programa eBPF
+
 bpf_prog = """
 #include <uapi/linux/pkt_cls.h>
 
@@ -25,8 +25,8 @@ int ddos_filter(struct __sk_buff *skb) {
 }
 """
 
-# Compila o programa eBPF
+
 b = BPF(text=bpf_prog)
 
-# Anexa o programa eBPF ao hook de filtro de pacotes
+
 b.attach_xdp(device="eth0", fn_name="ddos_filter")
